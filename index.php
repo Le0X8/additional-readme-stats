@@ -1,5 +1,8 @@
 <?php
 
+require 'vendor/autoload.php';
+include 'keys.php';
+
 $req_url = '/';
 
 if (isset($_SERVER['REQUEST_URI'])) {
@@ -15,7 +18,7 @@ $req_url_split = explode('/', $req_url);
 
 switch ($req_url_split[1]) {
     case 'spotify':
-        echo('spotify called');
+        include 'apis/spotify/spotify.php';
         break;
     
     default:
