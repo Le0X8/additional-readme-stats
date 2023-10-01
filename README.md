@@ -7,3 +7,7 @@ This project is compatible with and inspired by [Anurag Hazra](https://github.co
 ## Platforms
 
 - [Spotify](doc/spotify.md)
+
+## Self hosting
+
+If you want to host this project yourself, please read [self-hosting](doc/self-hosting.md).
