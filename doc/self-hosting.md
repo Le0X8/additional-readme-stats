@@ -7,6 +7,8 @@ If you want to self host this project, please read the following instructions.
 - Apache or Nginx
 - PHP 8.1
 - Composer
+- MariaDB or MySQL (MariaDB is recommended)
+- PHP MySQLi
 
 ### Additional configuration
 
@@ -36,11 +38,19 @@ location / {
 
 Simply just clone this repository into your server root and run `composer install` to install all dependencies.
 
+**Important:**
+You should visit `<protocol>://<your domain>/public` to create the encryption & decryption keys.
+
 ### Keys
 
 You need to specify your own keys.
 
 Just rename `keys-default.php` to `keys.php` and fill in your keys.
+
+#### Database connection
+
+1. Create a new database just for this project
+2. Fill in the database credentials in `keys.php`
 
 #### Spotify
 
