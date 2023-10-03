@@ -4,11 +4,16 @@ If you want to self host this project, please read the following instructions.
 
 ## Requirements
 
+You will get the best experience if you use a Linux server.
+
 - Apache or Nginx
 - PHP 8.1
 - Composer
 - MariaDB or MySQL (MariaDB is recommended)
-- PHP MySQLi
+- PHP mysqli extension
+- PHP curl extension
+
+For all the requirements, you can find a lot of installation guides on the internet.
 
 ### Additional configuration
 
