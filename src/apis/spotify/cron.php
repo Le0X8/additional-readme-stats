@@ -62,31 +62,31 @@ if (mysqli_num_rows($result) > 0) {
                 artist1 = "' . join(', ', array_map(function ($artist) {
                     return $artist->name;
                 }, $recents->items[0]->track->artists)) . '",
-                img1 = "' . $recents->items[0]->track->album->images[0]->url . '",
+                img1 = "' . $recents->items[0]->track->album->images[count($recents->items[0]->track->album->images) - 1]->url . '",
     
                 track2 = "' . $recents->items[1]->track->name . '",
                 artist2 = "' . join(', ', array_map(function ($artist) {
                     return $artist->name;
                 }, $recents->items[1]->track->artists)) . '",
-                img2 = "' . $recents->items[1]->track->album->images[0]->url . '",
-    
+                img2 = "' . $recents->items[1]->track->album->images[count($recents->items[1]->track->album->images) - 1]->url . '",
+
                 track3 = "' . $recents->items[2]->track->name . '",
                 artist3 = "' . join(', ', array_map(function ($artist) {
                     return $artist->name;
                 }, $recents->items[2]->track->artists)) . '",
-                img3 = "' . $recents->items[2]->track->album->images[0]->url . '",
-    
+                img3 = "' . $recents->items[2]->track->album->images[count($recents->items[2]->track->album->images) - 1]->url . '",
+
                 track4 = "' . $recents->items[3]->track->name . '",
                 artist4 = "' . join(', ', array_map(function ($artist) {
                     return $artist->name;
                 }, $recents->items[3]->track->artists)) . '",
-                img4 = "' . $recents->items[3]->track->album->images[0]->url . '",
-    
+                img4 = "' . $recents->items[3]->track->album->images[count($recents->items[3]->track->album->images) - 1]->url . '",
+
                 track5 = "' . $recents->items[4]->track->name . '",
                 artist5 = "' . join(', ', array_map(function ($artist) {
                     return $artist->name;
                 }, $recents->items[4]->track->artists)) . '",
-                img5 = "' . $recents->items[4]->track->album->images[0]->url . '",
+                img5 = "' . $recents->items[4]->track->album->images[count($recents->items[4]->track->album->images) - 1]->url . '",
                 update_time = ' .
             time() + 300 . ' WHERE username = "' . $username . '"');
         };

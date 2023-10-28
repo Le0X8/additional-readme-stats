@@ -91,21 +91,21 @@ echo (str_replace([
 
     htmlspecialchars($name1),
     htmlspecialchars($artist1),
-    $img1,
+    'data:image/jpeg;base64,' . base64_encode(file_get_contents($img1)),
 
     htmlspecialchars($name2),
     htmlspecialchars($artist2),
-    $img2,
+    'data:image/jpeg;base64,' . base64_encode(file_get_contents($img2)),
 
     htmlspecialchars($name3),
     htmlspecialchars($artist3),
-    $img3,
+    'data:image/jpeg;base64,' . base64_encode(file_get_contents($img3)),
 
     htmlspecialchars($name4),
     htmlspecialchars($artist4),
-    $img4,
+    'data:image/jpeg;base64,' . base64_encode(file_get_contents($img4)),
 
     htmlspecialchars($name5),
     htmlspecialchars($artist5),
-    $img5
+    'data:image/jpeg;base64,' . base64_encode(file_get_contents($img5))
 ], file_get_contents('src/imgs/spotify/recents.svg')));
