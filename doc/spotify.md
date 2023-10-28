@@ -2,7 +2,7 @@
 
 ## Authentication
 
-To authenticate with Spotify, you need to create a Spotify application [here](https://developer.spotify.com/dashboard/create) and setting the redirect URI to `<protocol>://<your domain>/spotify/callback`. If the instance you are using is providing a custom API key, you can leave the Client ID and Client Secret fields empty. This can be checked by visiting the `/configuration` endpoint.
+To authenticate with Spotify, you need to create a Spotify application [here](https://developer.spotify.com/dashboard/create) and setting the redirect URI to `<protocol>://<your domain>/spotify/callback/<your client_id>/<your client_secret>`. If the instance you are using is providing a custom API key, you can leave the Client ID and Client Secret fields empty. This can be checked by visiting the `/configuration` endpoint.
 
 ### Parameters
 
@@ -14,11 +14,11 @@ To authenticate with Spotify, you need to create a Spotify application [here](ht
 
 **Note:** `client_id` and `client_secret` are only required at login.
 
-## Fast Authentication
+### Login
 
-Spotify API requires you to re-authenticate after 1 hour. Create a shortcut to the `/spotify/fastauth` endpoint to re-authenticate in a single click.
+Endpoint: `/spotify/auth`
 
-This endpoint is structured the same way as the normal authentication endpoint so you can use the same parameters.
+You just have to visit this URL once, remeber to add `client_id` and `client_secret` if required.
 
 **Note:**
 You need to be logged in to your Spotify account in your browser for this to work.

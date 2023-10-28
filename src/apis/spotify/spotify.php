@@ -2,9 +2,9 @@
 
 mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotify (
     username VARCHAR(255) PRIMARY KEY,
-    refresh_token VARCHAR(255),
-    access_token VARCHAR(255),
-    expiration_time INT UNSIGNED
+    client_id VARCHAR(32),
+    client_secret VARCHAR(32),
+    refresh_token VARCHAR(255)
 )');
 mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifyrecents (
     username VARCHAR(255) PRIMARY KEY,
@@ -23,11 +23,8 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifyrecents (
     track5 VARCHAR(255),
     artist5 VARCHAR(255),
     img5 VARCHAR(255),
-    expiration_time INT UNSIGNED
+    update_time INT UNSIGNED
 )');
-
-mysqli_query($db, 'DELETE FROM spotify WHERE expiration_time < ' . time());
-mysqli_query($db, 'DELETE FROM spotifyrecents WHERE expiration_time < ' . time());
 
 $username = $query['username'] ?? '';
 $client_id = $SPOTIFY_ID;
@@ -42,34 +39,25 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         array_push($result_arr, $row);
     };
-    $ACCESS_TOKEN = $result_arr[0]['access_token'];
     $REFRESH_TOKEN = $result_arr[0]['refresh_token'];
-};
-
-if ($SPOTIFY_FORCE_CUSTOM || isset($query['client_id']) || isset($query['client_secret'])) {
-    $client_id = isset($query['client_id']) ? $query['client_id'] : '';
-    $client_secret = '';
-    if (isset($query['client_secret'])) {
-        include 'src/decrypt.php';
-        $private_key = get_private_key($db);
-        $decrypted = explode('&', decrypt_rsa($query['client_secret'], $private_key));
-        if ($username != $decrypted[0]) {
-            header('Content-Type: image/svg+xml');
-            die(file_get_contents('src/imgs/invalid.svg'));
-        };
-        $client_secret = $decrypted[1];
+    $username = $result_arr[0]['username'];
+    $client_id = $result_arr[0]['client_id'];
+    $client_secret = $result_arr[0]['client_secret'];
+} else {
+    if ($SPOTIFY_FORCE_CUSTOM || isset($query['client_id']) || isset($query['client_secret'])) {
+        $client_id = isset($query['client_id']) ? $query['client_id'] : '';
+        $client_secret = isset($query['client_secret']) ? $query['client_secret'] : '';
     };
 };
 
 $session = new SpotifyWebAPI\Session(
     $client_id,
     $client_secret,
-    $ROOT_URL . '/spotify/callback'
+    $ROOT_URL . '/spotify/callback/' . $client_id . '/' . $client_secret
 );
 
 $api = new SpotifyWebAPI\SpotifyWebAPI();
 
-$cached = true;
 include 'src/apis/spotify/login.php';
 
 header('Content-Type: image/svg+xml');

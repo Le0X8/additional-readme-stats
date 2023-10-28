@@ -3,9 +3,9 @@
 
 mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotify (
     username VARCHAR(255) PRIMARY KEY,
-    refresh_token VARCHAR(255),
-    access_token VARCHAR(255),
-    expiration_time INT UNSIGNED
+    client_id VARCHAR(32),
+    client_secret VARCHAR(32),
+    refresh_token VARCHAR(255)
 )');
 
 mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifyrecents (
@@ -25,103 +25,71 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifyrecents (
     track5 VARCHAR(255),
     artist5 VARCHAR(255),
     img5 VARCHAR(255),
-    expiration_time INT UNSIGNED
+    update_time INT UNSIGNED
 )');
 
-mysqli_query($db, 'DELETE FROM spotify WHERE expiration_time < ' . time());
-mysqli_query($db, 'DELETE FROM spotifyrecents WHERE expiration_time < ' . time());
-
-$session = new SpotifyWebAPI\Session(
-    '', // this is not needed
-    '', // also not needed
-    $ROOT_URL . '/spotify/callback'
-);
-$api = new SpotifyWebAPI\SpotifyWebAPI();
-
-echo('- ' . time() . ': Updating recent tracks' . "\n");
-
-$result = mysqli_query($db, 'SELECT * FROM spotify');
+$result = mysqli_query($db, 'SELECT * FROM spotifyrecents WHERE update_time < ' . time());
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $ACCESS_TOKEN = $row['access_token'];
-        $REFRESH_TOKEN = $row['refresh_token'];
-        $username = $row['username'];
+        $userdata = mysqli_query($db, 'SELECT * FROM spotify WHERE username=\'' . $row['username'] . '\'');
+        while ($userrow = mysqli_fetch_assoc($userdata)) {
+            $REFRESH_TOKEN = $userrow['refresh_token'];
+            $username = $userrow['username'];
+            $client_id = $userrow['client_id'];
+            $client_secret = $userrow['client_secret'];
 
-        echo('- ' . time() . ': Updating recent tracks for ' . $username . "\n");
+            $session = new SpotifyWebAPI\Session(
+                $client_id,
+                $client_secret,
+                $ROOT_URL . '/spotify/callback/' . $client_id . '/' . $client_secret
+            );
+            $api = new SpotifyWebAPI\SpotifyWebAPI();
 
-        $api->setAccessToken($ACCESS_TOKEN);
-        $session->setAccessToken($ACCESS_TOKEN);
-        $session->setRefreshToken($REFRESH_TOKEN);
+            $session->setRefreshToken($REFRESH_TOKEN);
+            $session->refreshAccessToken($REFRESH_TOKEN);
+            $ACCESS_TOKEN = $session->getAccessToken();
+            $api->setAccessToken($ACCESS_TOKEN);
+            $session->setAccessToken($ACCESS_TOKEN);
+    
+            echo('- ' . time() . ': Updating recent tracks for ' . $username . "\n");
 
-        $recents = $api->getMyRecentTracks([
-            'limit' => 5
-        ]);
+            $recents = $api->getMyRecentTracks([
+                'limit' => 5
+            ]);
 
-        mysqli_query($db, 'INSERT INTO spotifyrecents (username, track1, artist1, img1, track2, artist2, img2, track3, artist3, img3, track4, artist4, img4, track5, artist5, img5, expiration_time) VALUES (
-            "' . $username . '",
-
-            "' . $recents->items[0]->track->name . '",
-            "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[0]->track->artists)) . '",
-            "' . $recents->items[0]->track->album->images[0]->url . '",
-
-            "' . $recents->items[1]->track->name . '",
-            "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[1]->track->artists)) . '",
-            "' . $recents->items[1]->track->album->images[0]->url . '",
-
-            "' . $recents->items[2]->track->name . '",
-            "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[2]->track->artists)) . '",
-            "' . $recents->items[2]->track->album->images[0]->url . '",
-
-            "' . $recents->items[3]->track->name . '",
-            "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[3]->track->artists)) . '",
-            "' . $recents->items[3]->track->album->images[0]->url . '",
-
-            "' . $recents->items[4]->track->name . '",
-            "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[4]->track->artists)) . '",
-            "' . $recents->items[4]->track->album->images[0]->url . '",
-
-            ' . time() + 1209600 . '
-        ) ON DUPLICATE KEY UPDATE 
-            track1 = "' . $recents->items[0]->track->name . '",
-            artist1 = "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[0]->track->artists)) . '",
-            img1 = "' . $recents->items[0]->track->album->images[0]->url . '",
-
-            track2 = "' . $recents->items[1]->track->name . '",
-            artist2 = "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[1]->track->artists)) . '",
-            img2 = "' . $recents->items[1]->track->album->images[0]->url . '",
-
-            track3 = "' . $recents->items[2]->track->name . '",
-            artist3 = "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[2]->track->artists)) . '",
-            img3 = "' . $recents->items[2]->track->album->images[0]->url . '",
-
-            track4 = "' . $recents->items[3]->track->name . '",
-            artist4 = "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[3]->track->artists)) . '",
-            img4 = "' . $recents->items[3]->track->album->images[0]->url . '",
-
-            track5 = "' . $recents->items[4]->track->name . '",
-            artist5 = "' . join(', ', array_map(function ($artist) {
-                return $artist->name;
-            }, $recents->items[4]->track->artists)) . '",
-            img5 = "' . $recents->items[4]->track->album->images[0]->url . '"
-        ');
+            mysqli_query($db, 'UPDATE spotifyrecents SET 
+                track1 = "' . $recents->items[0]->track->name . '",
+                artist1 = "' . join(', ', array_map(function ($artist) {
+                    return $artist->name;
+                }, $recents->items[0]->track->artists)) . '",
+                img1 = "' . $recents->items[0]->track->album->images[0]->url . '",
+    
+                track2 = "' . $recents->items[1]->track->name . '",
+                artist2 = "' . join(', ', array_map(function ($artist) {
+                    return $artist->name;
+                }, $recents->items[1]->track->artists)) . '",
+                img2 = "' . $recents->items[1]->track->album->images[0]->url . '",
+    
+                track3 = "' . $recents->items[2]->track->name . '",
+                artist3 = "' . join(', ', array_map(function ($artist) {
+                    return $artist->name;
+                }, $recents->items[2]->track->artists)) . '",
+                img3 = "' . $recents->items[2]->track->album->images[0]->url . '",
+    
+                track4 = "' . $recents->items[3]->track->name . '",
+                artist4 = "' . join(', ', array_map(function ($artist) {
+                    return $artist->name;
+                }, $recents->items[3]->track->artists)) . '",
+                img4 = "' . $recents->items[3]->track->album->images[0]->url . '",
+    
+                track5 = "' . $recents->items[4]->track->name . '",
+                artist5 = "' . join(', ', array_map(function ($artist) {
+                    return $artist->name;
+                }, $recents->items[4]->track->artists)) . '",
+                img5 = "' . $recents->items[4]->track->album->images[0]->url . '",
+                update_time = ' .
+            time() + 300 . ' WHERE username = "' . $username . '"');
+        };
     };
 };
 

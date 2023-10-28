@@ -1,13 +1,9 @@
-<?php 
-    setcookie('fastauth', 'true', array(
-        'path' => '/spotify'
-    ));
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify API Fast Auth</title>
+    <title>Spotify API Authentication</title>
 </head>
 <body>
     <noscript><a href="<?php echo($session->getAuthorizeUrl($options)); ?>">Authorize</a></noscript>
