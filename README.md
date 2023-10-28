@@ -10,6 +10,12 @@ This project is compatible with and inspired by [Anurag Hazra](https://github.co
 
 - [Spotify](doc/spotify.md)
 
+## Usage
+
+Check out the platforms above to see how to use them.
+
+If you don't want to self-host your own instance, you can use this one as your base URL: ```https://armstats.leox.dev```
+
 ## Self hosting
 
-If you want to host this project yourself, please read [self-hosting](doc/self-hosting.md).
+If you want to host this project yourself, please read [the self hosting guide](doc/self-hosting.md).

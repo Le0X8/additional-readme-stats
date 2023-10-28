@@ -60,7 +60,7 @@ Just rename `keys-default.php` to `keys.php` and fill in your keys.
 #### Spotify
 
 1. Create a new Spotify application [here](https://developer.spotify.com/dashboard/create);
-2. Set redirect URI to `<protocol>://<your domain>/spotify/callback`;
+2. Set redirect URI to `<protocol>://<your domain>/spotify/callback/<your client_id>/<your client_secret>`;
 3. After creating the application, go to settings and copy the client ID and client secret.
 4. Fill in the keys in `keys.php`.
 
