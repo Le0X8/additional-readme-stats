@@ -37,8 +37,13 @@ if ($req_url_split[2] == 'callback' && isset($query['code'])) {
     $username = $api->me()->id;
     $REFRESH_TOKEN = $session->getRefreshToken();
     mysqli_query($db, 'INSERT INTO spotify (username, client_id, client_secret, refresh_token) VALUES ("' . $username . '", "' . $client_id . '", "' . $client_secret . '", "' . $REFRESH_TOKEN . '") ON DUPLICATE KEY UPDATE client_id = "' . $client_id . '", client_secret = "' . $client_secret . '", refresh_token = "' . $REFRESH_TOKEN . '"');
+    mysqli_query($db, 'INSERT INTO spotifyrecents (username, update_time) VALUES ("' . $username . '", 0) ON DUPLICATE KEY UPDATE username = "' . $username . '", update_time = 0');
 
-    die(file_get_contents('src/apis/spotify/auth-success.html'));
+    echo(file_get_contents('src/apis/spotify/auth-success.html') . '<!--');
+    include 'src/apis/spotify/cron.php';
+    echo('-->');
+
+    die();
 };
 
 if ($REFRESH_TOKEN != null) {
