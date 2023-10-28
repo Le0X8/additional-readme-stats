@@ -41,6 +41,10 @@ switch ($req_url_split[1]) {
     case 'public':
         include 'src/public.php';
         break;
+
+    case 'cron':
+        include 'src/cron.php';
+        break;
     
     default:
         header('Location: https://github.com/Le0X8/additional-readme-stats');
