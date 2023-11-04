@@ -7,6 +7,12 @@ error_reporting(E_ALL);
 require 'vendor/autoload.php';
 include 'keys.php';
 
+header('Cache-Control: no-cache');
+
+if (isset($_SERVER['HTTP_ORIGIN']) && preg_match('/^https?:\/\/.*\.github\.io$/', $_SERVER['HTTP_ORIGIN'])) {
+    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+};
+
 $req_url = '/';
 
 if (isset($_SERVER['REQUEST_URI'])) {
@@ -33,19 +39,42 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS config (
     `value` VARCHAR(2047)
 )');
 
+switch ($req_url_split[3] ?? 'svg') {
+    case 'svg':
+        header('Content-Type: image/svg+xml');
+        break;
+    
+    case 'json':
+        header('Content-Type: application/json');
+        break;
+
+    case 'html':
+        header('Content-Type: text/html');
+        break;
+    
+    default:
+        header('Location: https://github.com/Le0X8/additional-readme-stats');
+        die();
+};
+
 switch ($req_url_split[1]) {
     case 'spotify':
         include 'src/apis/spotify/spotify.php';
         break;
 
-    case 'public':
-        include 'src/public.php';
-        break;
-
     case 'cron':
         include 'src/cron.php';
         break;
-    
+
+    case 'css':
+        header('Content-Type: text/css');
+        include 'src/stylesheet.css';
+        die();
+
+    case 'spotify-logo':
+        header('Content-Type: image/png');
+        die(file_get_contents('assets/spotify/logos/green.png'));
+
     default:
         header('Location: https://github.com/Le0X8/additional-readme-stats');
         break;

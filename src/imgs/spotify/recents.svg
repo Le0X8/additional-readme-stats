@@ -1,12 +1,6 @@
-<svg width="350" height="260" viewBox="0 0 350 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg width="350" height="[[height]]" viewBox="0 0 350 [[height]]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
     <title>[[title]]</title>
-    <desc>
-        1. [[name1]] by [[artist1]],
-        2. [[name2]] by [[artist2]],
-        3. [[name3]] by [[artist3]],
-        4. [[name4]] by [[artist4]],
-        5. [[name5]] by [[artist5]]
-    </desc>
+    <desc><!--[[description]]--></desc>
     <style>
         .header {
             font: 600 15.5px 'Segoe UI', Ubuntu, sans-serif;
@@ -26,32 +20,24 @@
         }
 
         .image {
-            x: 25px;
+            transform: translate(25px, 0);
             width: 27.5px;
             height: 27.5px;
         }
+
+        .icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 21px;
+        }
     </style>
 
-    <rect x="0.5" y="0.5" width="348" height="258" fill="#[[bgColor]]" stroke="#[[borderColor]]" rx="[[borderRadius]]" stroke-width="1" stroke-opacity="1"></rect>
+    <rect x="0.5" y="0.5" width="348" height="[[boxHeight]]" fill="#[[bgColor]]" stroke="#[[borderColor]]" rx="[[borderRadius]]" stroke-width="1" stroke-opacity="1"></rect>
     <text x="25" y="35" class="header">[[title]]</text>
 
-    <image href="[[img1]]" y="48.75" rx="4.5" class="image"></image>
-    <text y="60" class="name">[[name1]]</text>
-    <text y="75" class="artist">[[artist1]]</text>
-
-    <image href="[[img2]]" y="88.75" rx="4.5" class="image"></image>
-    <text y="100" class="name">[[name2]]</text>
-    <text y="115" class="artist">[[artist2]]</text>
-
-    <image href="[[img3]]" y="128.75" rx="4.5" class="image"></image>
-    <text y="140" class="name">[[name3]]</text>
-    <text y="155" class="artist">[[artist3]]</text>
-
-    <image href="[[img4]]" y="168.75" rx="4.5" class="image"></image>
-    <text y="180" class="name">[[name4]]</text>
-    <text y="195" class="artist">[[artist4]]</text>
-
-    <image href="[[img5]]" y="208.75" rx="4.5" class="image"></image>
-    <text y="220" class="name">[[name5]]</text>
-    <text y="235" class="artist">[[artist5]]</text>
+    <!--[[contents]]-->
 </svg>

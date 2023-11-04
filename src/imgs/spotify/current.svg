@@ -1,0 +1,57 @@
+<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+    <title>[[title]]</title>
+    <desc>[[description]]</desc>
+    <style>
+        .header {
+            font: 600 15.5px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[titleColor]];
+        }
+
+        .name {
+            font: 400 20px 'Segoe UI', Ubuntu, sans-serif;
+            font-weight: 400;
+            font-family: 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[textColor]];
+        }
+
+        .artist {
+            font: 400 17.5px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[iconColor]];
+        }
+
+        .image {
+            width: 150px;
+            height: 150px;
+        }
+
+        .icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 21px;
+        }
+
+        .vertical {
+            writing-mode: vertical-lr;
+            transform: translate(42.5px, 422.5px) rotate(180deg);
+            font-family: 'Segoe UI', Ubuntu, sans-serif;
+            font-variant: small-caps;
+        }
+    </style>
+
+    <rect x="0.5" y="0.5" width="348" height="348" fill="#[[bgColor]]" stroke="#[[borderColor]]" rx="[[borderRadius]]" stroke-width="1" stroke-opacity="1"></rect>
+    <text x="25" y="35" class="header">[[title]]</text>
+
+    <text class="name" x="50%" y="275" dominant-baseline="middle" text-anchor="middle">[[name]]</text>
+    <text class="artist" x="50%" y="300" dominant-baseline="middle" text-anchor="middle">[[artist]]</text>
+    <image href="[[image]]" x="100" y="60" class="image" />
+
+    <image href="[[playstate]]" x="155" y="215" width="40" height="40" />
+    <image href="[[shuffle]]" x="110" y="220" width="30" height="30" />
+    <image href="[[repeat]]" x="210" y="220" width="30" height="30" />
+
+    <!--[[contents]]-->
+</svg>

@@ -7,9 +7,11 @@ $STYLES = [
         'icon_color' => '4c71f2',
         'text_color' => '434d58',
         'bg_color' => 'fffefe',
+        'inner_bg_color' => 'e4e2e2',
         'border_color' => 'e4e2e2',
         'hide_border' => 'false',
         'border_radius' => '4.5',
+        'inner_border_radius' => '4.5',
         'hide_title' => 'false'
     ],
     'default_repocard' => [

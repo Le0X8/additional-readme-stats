@@ -13,85 +13,67 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifyrecents (
     track1 VARCHAR(255),
     artist1 VARCHAR(255),
     img1 VARCHAR(255),
+    id1 VARCHAR(63),
     track2 VARCHAR(255),
     artist2 VARCHAR(255),
     img2 VARCHAR(255),
+    id2 VARCHAR(63),
     track3 VARCHAR(255),
     artist3 VARCHAR(255),
     img3 VARCHAR(255),
+    id3 VARCHAR(63),
     track4 VARCHAR(255),
     artist4 VARCHAR(255),
     img4 VARCHAR(255),
+    id4 VARCHAR(63),
     track5 VARCHAR(255),
     artist5 VARCHAR(255),
     img5 VARCHAR(255),
-    update_time INT UNSIGNED
+    id5 VARCHAR(63),
+    track6 VARCHAR(255),
+    artist6 VARCHAR(255),
+    img6 VARCHAR(255),
+    id6 VARCHAR(63),
+    track7 VARCHAR(255),
+    artist7 VARCHAR(255),
+    img7 VARCHAR(255),
+    id7 VARCHAR(63),
+    track8 VARCHAR(255),
+    artist8 VARCHAR(255),
+    img8 VARCHAR(255),
+    id8 VARCHAR(63),
+    track9 VARCHAR(255),
+    artist9 VARCHAR(255),
+    img9 VARCHAR(255),
+    id9 VARCHAR(63),
+    track10 VARCHAR(255),
+    artist10 VARCHAR(255),
+    img10 VARCHAR(255),
+    id10 VARCHAR(63),
+    expiration_time INT UNSIGNED
 )');
 
-$result = mysqli_query($db, 'SELECT * FROM spotifyrecents WHERE update_time < ' . time());
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $userdata = mysqli_query($db, 'SELECT * FROM spotify WHERE username=\'' . $row['username'] . '\'');
-        while ($userrow = mysqli_fetch_assoc($userdata)) {
-            $REFRESH_TOKEN = $userrow['refresh_token'];
-            $username = $userrow['username'];
-            $client_id = $userrow['client_id'];
-            $client_secret = $userrow['client_secret'];
+mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifycurrent (
+    username VARCHAR(255) PRIMARY KEY,
+    device VARCHAR(255),
+    device_type VARCHAR(255),
+    volume INT UNSIGNED,
+    shuffle BOOLEAN,
+    rpt VARCHAR(255),
+    playing BOOLEAN,
+    track VARCHAR(255),
+    artist VARCHAR(255),
+    img VARCHAR(255),
+    expiration_time INT UNSIGNED
+)');
 
-            $session = new SpotifyWebAPI\Session(
-                $client_id,
-                $client_secret,
-                $ROOT_URL . '/spotify/callback/' . $client_id . '/' . $client_secret
-            );
-            $api = new SpotifyWebAPI\SpotifyWebAPI();
+echo('Removing expired Spotify recents...' . "\n");
 
-            $session->setRefreshToken($REFRESH_TOKEN);
-            $session->refreshAccessToken($REFRESH_TOKEN);
-            $ACCESS_TOKEN = $session->getAccessToken();
-            $api->setAccessToken($ACCESS_TOKEN);
-            $session->setAccessToken($ACCESS_TOKEN);
-    
-            echo('- ' . time() . ': Updating recent tracks for ' . $username . "\n");
+mysqli_query($db, 'DELETE FROM spotifyrecents WHERE expiration_time < ' . time());
 
-            $recents = $api->getMyRecentTracks([
-                'limit' => 5
-            ]);
+echo('Removing expired Spotify current...' . "\n");
 
-            mysqli_query($db, 'UPDATE spotifyrecents SET 
-                track1 = "' . $recents->items[0]->track->name . '",
-                artist1 = "' . join(', ', array_map(function ($artist) {
-                    return $artist->name;
-                }, $recents->items[0]->track->artists)) . '",
-                img1 = "' . $recents->items[0]->track->album->images[count($recents->items[0]->track->album->images) - 1]->url . '",
-    
-                track2 = "' . $recents->items[1]->track->name . '",
-                artist2 = "' . join(', ', array_map(function ($artist) {
-                    return $artist->name;
-                }, $recents->items[1]->track->artists)) . '",
-                img2 = "' . $recents->items[1]->track->album->images[count($recents->items[1]->track->album->images) - 1]->url . '",
-
-                track3 = "' . $recents->items[2]->track->name . '",
-                artist3 = "' . join(', ', array_map(function ($artist) {
-                    return $artist->name;
-                }, $recents->items[2]->track->artists)) . '",
-                img3 = "' . $recents->items[2]->track->album->images[count($recents->items[2]->track->album->images) - 1]->url . '",
-
-                track4 = "' . $recents->items[3]->track->name . '",
-                artist4 = "' . join(', ', array_map(function ($artist) {
-                    return $artist->name;
-                }, $recents->items[3]->track->artists)) . '",
-                img4 = "' . $recents->items[3]->track->album->images[count($recents->items[3]->track->album->images) - 1]->url . '",
-
-                track5 = "' . $recents->items[4]->track->name . '",
-                artist5 = "' . join(', ', array_map(function ($artist) {
-                    return $artist->name;
-                }, $recents->items[4]->track->artists)) . '",
-                img5 = "' . $recents->items[4]->track->album->images[count($recents->items[4]->track->album->images) - 1]->url . '",
-                update_time = ' .
-            time() + 300 . ' WHERE username = "' . $username . '"');
-        };
-    };
-};
+mysqli_query($db, 'DELETE FROM spotifycurrent WHERE expiration_time < ' . time());
 
 ?>
 - <?php echo(time()); ?>: Spotify cronjob finished
