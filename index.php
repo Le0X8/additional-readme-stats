@@ -48,13 +48,9 @@ switch ($req_url_split[3] ?? 'svg') {
         header('Content-Type: application/json');
         break;
 
-    case 'html':
+    default:
         header('Content-Type: text/html');
         break;
-    
-    default:
-        header('Location: https://github.com/Le0X8/additional-readme-stats');
-        die();
 };
 
 switch ($req_url_split[1]) {
