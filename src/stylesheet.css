@@ -27,6 +27,7 @@ li {
 
 li:hover {
     background-color: #ccc;
+    transform: scale(101%, 101%);
 }
 
 a {
