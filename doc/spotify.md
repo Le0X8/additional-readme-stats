@@ -26,6 +26,8 @@ Caching: 2 minutes
 
 ```https://armstats.leox.dev/spotify/current?username=ji431f2ja6vyczqq0eatna6jb```
 
+![My current Spotify track](https://armstats.leox.dev/spotify/current?username=ji431f2ja6vyczqq0eatna6jb)
+
 #### Parameters
 
 | Parameter | Description | Default value | Required |
