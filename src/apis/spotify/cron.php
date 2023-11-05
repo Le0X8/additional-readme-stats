@@ -303,5 +303,29 @@ echo('Removing expired Spotify current...' . "\n");
 
 mysqli_query($db, 'DELETE FROM spotifycurrent WHERE expiration_time < ' . time());
 
+echo('Removing expired Spotify mtracks...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifymtracks WHERE expiration_time < ' . time());
+
+echo('Removing expired Spotify hytracks...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifyhytracks WHERE expiration_time < ' . time());
+
+echo('Removing expired Spotify attracks...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifyattracks WHERE expiration_time < ' . time());
+
+echo('Removing expired Spotify martists...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifymartists WHERE expiration_time < ' . time());
+
+echo('Removing expired Spotify hyartists...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifyhyartists WHERE expiration_time < ' . time());
+
+echo('Removing expired Spotify atartists...' . "\n");
+
+mysqli_query($db, 'DELETE FROM spotifyatartists WHERE expiration_time < ' . time());
+
 ?>
 - <?php echo(time()); ?>: Spotify cronjob finished
