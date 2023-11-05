@@ -39,6 +39,8 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS config (
     `value` VARCHAR(2047)
 )');
 
+$norender = false;
+
 switch ($req_url_split[3] ?? 'svg') {
     case 'svg':
         header('Content-Type: image/svg+xml');

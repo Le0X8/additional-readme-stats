@@ -22,18 +22,35 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     $current = $api->getMyCurrentPlaybackInfo();
 
-    $device = $current->device->name;
-    $device_type = strtolower($current->device->type);
-    $volume = $current->device->volume_percent ?? 100;
-    $shuffle = $current->shuffle_state;
-    $repeat = $current->repeat_state;
-    $playing = $current->is_playing;
+    if ($current == null) {
+        $norender = true;
+        include 'src/apis/spotify/recents/recents.php';
+        $norender = false;
 
-    $name = $current->item->name;
-    $artist = join(', ', array_map(function ($artist) {
-        return $artist->name;
-    }, $current->item->artists));
-    $image = $current->item->album->images[0]->url;
+        $device = 'No device';
+        $device_type = 'speaker';
+        $volume = 0;
+        $shuffle = false;
+        $repeat = 'off';
+        $playing = false;
+
+        $name = $name1;
+        $artist = $artist1;
+        $image = $img1;
+    } else {
+        $device = $current->device->name;
+        $device_type = strtolower($current->device->type);
+        $volume = $current->device->volume_percent ?? 100;
+        $shuffle = $current->shuffle_state;
+        $repeat = $current->repeat_state;
+        $playing = $current->is_playing;
+
+        $name = $current->item->name;
+        $artist = join(', ', array_map(function ($artist) {
+            return $artist->name;
+        }, $current->item->artists));
+        $image = $current->item->album->images[0]->url;
+    };
 
     mysqli_query($db, 'INSERT INTO spotifycurrent (
         username,
