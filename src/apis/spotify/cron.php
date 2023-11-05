@@ -61,9 +61,11 @@ mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifycurrent (
     shuffle BOOLEAN,
     rpt VARCHAR(255),
     playing BOOLEAN,
+    playtype VARCHAR(31),
     track VARCHAR(255),
     artist VARCHAR(255),
     img VARCHAR(255),
+    id VARCHAR(63),
     expiration_time INT UNSIGNED
 )');
 

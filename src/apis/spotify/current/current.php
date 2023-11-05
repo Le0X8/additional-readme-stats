@@ -15,10 +15,12 @@ if (mysqli_num_rows($result) > 0) {
     $shuffle = !!$result_arr[0]['shuffle'];
     $repeat = $result_arr[0]['rpt'];
     $playing = !!$result_arr[0]['playing'];
+    $type = $result_arr[0]['playtype'];
 
     $name = $result_arr[0]['track'];
     $artist = $result_arr[0]['artist'];
     $image = $result_arr[0]['img'];
+    $id = $result_arr[0]['id'];
 } else {
     $current = $api->getMyCurrentPlaybackInfo();
 
@@ -33,10 +35,12 @@ if (mysqli_num_rows($result) > 0) {
         $shuffle = false;
         $repeat = 'off';
         $playing = false;
+        $type = 'track';
 
         $name = $name1;
         $artist = $artist1;
         $image = $img1;
+        $id = $id1;
     } else {
         $device = $current->device->name;
         $device_type = strtolower($current->device->type);
@@ -45,11 +49,23 @@ if (mysqli_num_rows($result) > 0) {
         $repeat = $current->repeat_state;
         $playing = $current->is_playing;
 
-        $name = $current->item->name;
-        $artist = join(', ', array_map(function ($artist) {
-            return $artist->name;
-        }, $current->item->artists));
-        $image = $current->item->album->images[0]->url;
+        if ($current->item == null) {
+            $type = 'unknown';
+
+            $name = 'Unknown';
+            $artist = 'Unknown';
+            $image = $ROOT_URL . '/unknown';
+            $id = 'unknown';
+        } else {
+            $type = $current->item->type;
+
+            $name = $current->item->name;
+            $artist = join(', ', array_map(function ($artist) {
+                return $artist->name;
+            }, $current->item->artists));
+            $image = $current->item->album->images[0]->url;
+            $id = $current->item->id;
+        };
     };
 
     mysqli_query($db, 'INSERT INTO spotifycurrent (
@@ -65,6 +81,8 @@ if (mysqli_num_rows($result) > 0) {
         track,
         artist,
         img,
+        id,
+        playtype,
 
         expiration_time
     ) VALUES (
@@ -80,6 +98,8 @@ if (mysqli_num_rows($result) > 0) {
         "' . $name . '",
         "' . $artist . '",
         "' . $image . '",
+        "' . $id . '",
+        "' . $type . '",
 
         ' . (time() + 120) . '
     )');

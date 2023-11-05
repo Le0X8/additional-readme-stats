@@ -7,7 +7,9 @@ echo(json_encode([
     'shuffle' => $shuffle,
     'repeat' => $repeat,
     'playing' => $playing,
+    'type' => $type,
     'name' => $name,
     'artist' => $artist,
-    'image' => $image
+    'image' => $image,
+    'id' => $id
 ]));

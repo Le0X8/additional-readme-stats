@@ -69,9 +69,9 @@ switch ($req_url_split[1]) {
         include 'src/stylesheet.css';
         die();
 
-    case 'spotify-logo':
-        header('Content-Type: image/png');
-        die(file_get_contents('assets/spotify/logos/green.png'));
+    case 'unknown':
+        header('Content-Type: image/jpeg');
+        die(file_get_contents('assets/unknown.jpg'));
 
     default:
         header('Location: https://github.com/Le0X8/additional-readme-stats');
