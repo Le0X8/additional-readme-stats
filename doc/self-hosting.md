@@ -41,7 +41,7 @@ location / {
 
 ## Installation
 
-Simply just clone this repository into your server root and run `composer install` to install all dependencies.
+Download the source code of the [latest release](https://github.com/Le0X8/additional-readme-stats/releases/latest) into your server root and run `composer install` to install all dependencies.
 
 **Important:**
 You should visit `<protocol>://<your domain>/public` to create the encryption & decryption keys.

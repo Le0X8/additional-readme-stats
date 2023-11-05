@@ -34,11 +34,6 @@ $db = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS) or die('DB connection failed.
 mysqli_select_db($db, $DB_NAME);
 mysqli_set_charset($db, 'utf8');
 
-mysqli_query($db, 'CREATE TABLE IF NOT EXISTS config (
-    `key` VARCHAR(255) PRIMARY KEY,
-    `value` VARCHAR(2047)
-)');
-
 $norender = false;
 
 switch ($req_url_split[3] ?? 'svg') {

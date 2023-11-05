@@ -1,0 +1,49 @@
+<svg width="350" height="[[height]]" viewBox="0 0 350 [[height]]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+    <title>[[title]]</title>
+    <desc><!--[[description]]--></desc>
+    <style>
+        .header {
+            font: 600 15.5px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[titleColor]];
+        }
+
+        .name {
+            transform: translate(60px, 0);
+            font: 400 12.5px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[textColor]];
+        }
+
+        .artist {
+            transform: translate(60px, 0);
+            font: 400 10px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[iconColor]];
+        }
+
+        .image {
+            transform: translate(25px, 0);
+            width: 27.5px;
+            height: 27.5px;
+        }
+
+        .icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 21px;
+        }
+
+        .rank {
+            transform: translate(12.5px, 0);
+            font: 900 15px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #[[iconColor]];
+        }
+    </style>
+
+    <rect x="0.5" y="0.5" width="348" height="[[boxHeight]]" fill="#[[bgColor]]" stroke="#[[borderColor]]" rx="[[borderRadius]]" stroke-width="1" stroke-opacity="1"></rect>
+    <text x="25" y="35" class="header">[[title]]</text>
+
+    <!--[[contents]]-->
+</svg>

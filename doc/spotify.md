@@ -16,6 +16,48 @@ These can be used in all of the stats below.
 
 ## Stats
 
+### Top tracks
+
+Endpoint: `/spotify/tracks`
+
+Caching: 24 hours
+
+#### Example
+
+```https://armstats.leox.dev/spotify/tracks?username=ji431f2ja6vyczqq0eatna6jb```
+
+![My top tracks](https://armstats.leox.dev/spotify/tracks?username=ji431f2ja6vyczqq0eatna6jb)
+
+#### Parameters
+
+| Parameter | Description | Default value | Required |
+| --- | --- | --- | --- |
+| `username` | Your Spotify username | empty string | Yes |
+| `limit` | The amount of tracks to show (between 1 and 10) | `5` | No |
+| `period` | The period of the tracks (`month`, `halfyear`, `alltime`) | `alltime` | No |
+| `hide_rank` | Hide the rank number | `false` | No |
+
+### Top artists
+
+Endpoint: `/spotify/artists`
+
+Caching: 24 hours
+
+#### Example
+
+```https://armstats.leox.dev/spotify/artists?username=ji431f2ja6vyczqq0eatna6jb```
+
+![My top artists](https://armstats.leox.dev/spotify/artists?username=ji431f2ja6vyczqq0eatna6jb)
+
+#### Parameters
+
+| Parameter | Description | Default value | Required |
+| --- | --- | --- | --- |
+| `username` | Your Spotify username | empty string | Yes |
+| `limit` | The amount of artists to show (between 1 and 10) | `5` | No |
+| `period` | The period of the artists (`month`, `halfyear`, `alltime`) | `alltime` | No |
+| `hide_rank` | Hide the rank number | `false` | No |
+
 ### Currently playing track
 
 Endpoint: `/spotify/current`
