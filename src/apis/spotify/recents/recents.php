@@ -134,7 +134,7 @@ if (mysqli_num_rows($result) > 0) {
     $img10 = $recents->items[9]->track->album->images[count($recents->items[9]->track->album->images) - 1]->url;
     $id10 = $recents->items[9]->track->id;
 
-    mysqli_query($db, 'INSERT INTO spotifyrecents (
+    mysqli_query($db, 'INSERT IGNORE INTO spotifyrecents (
         username,
 
         track1,
