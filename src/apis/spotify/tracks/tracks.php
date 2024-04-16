@@ -26,7 +26,7 @@ switch ($period) {
         break;
 
     default:
-        $title .= 'all time';
+        $title .= 'the past year';
         break;
 };
 

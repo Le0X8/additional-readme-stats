@@ -55,6 +55,10 @@ switch ($req_url_split[1]) {
         include 'src/apis/spotify/spotify.php';
         break;
 
+    case 'chess':
+        include 'src/apis/chess/chess.php';
+        break;
+
     case 'cron':
         include 'src/cron.php';
         break;

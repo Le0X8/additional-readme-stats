@@ -24,14 +24,14 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     $current = $api->getMyCurrentPlaybackInfo();
 
-    $device = $current->device->name;
-    $device_type = strtolower($current->device->type);
-    $volume = $current->device->volume_percent ?? 100;
-    $shuffle = $current->shuffle_state;
-    $repeat = $current->repeat_state;
-    $playing = $current->is_playing;
+    $device = $current?->device?->name ?? 'Unknown';
+    $device_type = strtolower($current?->device?->type ?? 'speaker');
+    $volume = $current?->device->volume_percent ?? 100;
+    $shuffle = $current?->shuffle_state ?? false;
+    $repeat = $current?->repeat_state ?? 'off';
+    $playing = $current?->is_playing ?? false;
 
-    if ($current->item == null) {
+    if (($current->item ?? null) == null) {
         $device = 'Unknown';
         $device_type = 'speaker';
         $volume = 0;
@@ -42,7 +42,7 @@ if (mysqli_num_rows($result) > 0) {
 
         $current = $api->getMyCurrentTrack();
 
-        if ($current == null) {
+        if (($current ?? null) == null) {
             $norender = true;
             include 'src/apis/spotify/recents/recents.php';
             $norender = false;
