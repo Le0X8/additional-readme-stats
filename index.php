@@ -35,6 +35,7 @@ mysqli_select_db($db, $DB_NAME);
 mysqli_set_charset($db, 'utf8');
 
 function e($str) {
+    global $db;
     return mysqli_real_escape_string($db, $str);
 };
 
