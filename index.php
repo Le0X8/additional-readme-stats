@@ -34,6 +34,10 @@ $db = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS) or die('DB connection failed.
 mysqli_select_db($db, $DB_NAME);
 mysqli_set_charset($db, 'utf8');
 
+function e($str) {
+    return mysqli_real_escape_string($db, $str);
+};
+
 $norender = false;
 
 switch ($req_url_split[3] ?? 'svg') {

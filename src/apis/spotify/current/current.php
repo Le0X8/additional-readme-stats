@@ -97,8 +97,8 @@ if (mysqli_num_rows($result) > 0) {
         "' . $repeat . '",
         ' . ($playing ? 'TRUE' : 'FALSE') . ',
 
-        "' . $name . '",
-        "' . $artist . '",
+        "' . e($name) . '",
+        "' . e($artist) . '",
         "' . $image . '",
         "' . $id . '",
         "' . $type . '",

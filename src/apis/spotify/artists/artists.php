@@ -150,43 +150,43 @@ if (mysqli_num_rows($result) > 0) {
     ) VALUES (
         "' . $username . '",
 
-        "' . $artistsm[0]['name'] . '",
+        "' . e($artistsm[0]['name']) . '",
         "' . $artistsm[0]['img'] . '",
         "' . $artistsm[0]['id'] . '",
 
-        "' . $artistsm[1]['name'] . '",
+        "' . e($artistsm[1]['name']) . '",
         "' . $artistsm[1]['img'] . '",
         "' . $artistsm[1]['id'] . '",
 
-        "' . $artistsm[2]['name'] . '",
+        "' . e($artistsm[2]['name']) . '",
         "' . $artistsm[2]['img'] . '",
         "' . $artistsm[2]['id'] . '",
 
-        "' . $artistsm[3]['name'] . '",
+        "' . e($artistsm[3]['name']) . '",
         "' . $artistsm[3]['img'] . '",
         "' . $artistsm[3]['id'] . '",
 
-        "' . $artistsm[4]['name'] . '",
+        "' . e($artistsm[4]['name']) . '",
         "' . $artistsm[4]['img'] . '",
         "' . $artistsm[4]['id'] . '",
 
-        "' . $artistsm[5]['name'] . '",
+        "' . e($artistsm[5]['name']) . '",
         "' . $artistsm[5]['img'] . '",
         "' . $artistsm[5]['id'] . '",
 
-        "' . $artistsm[6]['name'] . '",
+        "' . e($artistsm[6]['name']) . '",
         "' . $artistsm[6]['img'] . '",
         "' . $artistsm[6]['id'] . '",
 
-        "' . $artistsm[7]['name'] . '",
+        "' . e($artistsm[7]['name']) . '",
         "' . $artistsm[7]['img'] . '",
         "' . $artistsm[7]['id'] . '",
 
-        "' . $artistsm[8]['name'] . '",
+        "' . e($artistsm[8]['name']) . '",
         "' . $artistsm[8]['img'] . '",
         "' . $artistsm[8]['id'] . '",
 
-        "' . $artistsm[9]['name'] . '",
+        "' . e($artistsm[9]['name']) . '",
         "' . $artistsm[9]['img'] . '",
         "' . $artistsm[9]['id'] . '",
 
@@ -314,43 +314,43 @@ if (mysqli_num_rows($result) > 0) {
     ) VALUES (
         "' . $username . '",
 
-        "' . $artistshy[0]['name'] . '",
+        "' . e($artistshy[0]['name']) . '",
         "' . $artistshy[0]['img'] . '",
         "' . $artistshy[0]['id'] . '",
 
-        "' . $artistshy[1]['name'] . '",
+        "' . e($artistshy[1]['name']) . '",
         "' . $artistshy[1]['img'] . '",
         "' . $artistshy[1]['id'] . '",
 
-        "' . $artistshy[2]['name'] . '",
+        "' . e($artistshy[2]['name']) . '",
         "' . $artistshy[2]['img'] . '",
         "' . $artistshy[2]['id'] . '",
 
-        "' . $artistshy[3]['name'] . '",
+        "' . e($artistshy[3]['name']) . '",
         "' . $artistshy[3]['img'] . '",
         "' . $artistshy[3]['id'] . '",
 
-        "' . $artistshy[4]['name'] . '",
+        "' . e($artistshy[4]['name']) . '",
         "' . $artistshy[4]['img'] . '",
         "' . $artistshy[4]['id'] . '",
 
-        "' . $artistshy[5]['name'] . '",
+        "' . e($artistshy[5]['name']) . '",
         "' . $artistshy[5]['img'] . '",
         "' . $artistshy[5]['id'] . '",
 
-        "' . $artistshy[6]['name'] . '",
+        "' . e($artistshy[6]['name']) . '",
         "' . $artistshy[6]['img'] . '",
         "' . $artistshy[6]['id'] . '",
 
-        "' . $artistshy[7]['name'] . '",
+        "' . e($artistshy[7]['name']) . '",
         "' . $artistshy[7]['img'] . '",
         "' . $artistshy[7]['id'] . '",
 
-        "' . $artistshy[8]['name'] . '",
+        "' . e($artistshy[8]['name']) . '",
         "' . $artistshy[8]['img'] . '",
         "' . $artistshy[8]['id'] . '",
 
-        "' . $artistshy[9]['name'] . '",
+        "' . e($artistshy[9]['name']) . '",
         "' . $artistshy[9]['img'] . '",
         "' . $artistshy[9]['id'] . '",
         
@@ -478,43 +478,43 @@ if (mysqli_num_rows($result) > 0) {
     ) VALUES (
         "' . $username . '",
 
-        "' . $artistsat[0]['name'] . '",
+        "' . e($artistsat[0]['name']) . '",
         "' . $artistsat[0]['img'] . '",
         "' . $artistsat[0]['id'] . '",
 
-        "' . $artistsat[1]['name'] . '",
+        "' . e($artistsat[1]['name']) . '",
         "' . $artistsat[1]['img'] . '",
         "' . $artistsat[1]['id'] . '",
 
-        "' . $artistsat[2]['name'] . '",
+        "' . e($artistsat[2]['name']) . '",
         "' . $artistsat[2]['img'] . '",
         "' . $artistsat[2]['id'] . '",
 
-        "' . $artistsat[3]['name'] . '",
+        "' . e($artistsat[3]['name']) . '",
         "' . $artistsat[3]['img'] . '",
         "' . $artistsat[3]['id'] . '",
 
-        "' . $artistsat[4]['name'] . '",
+        "' . e($artistsat[4]['name']) . '",
         "' . $artistsat[4]['img'] . '",
         "' . $artistsat[4]['id'] . '",
 
-        "' . $artistsat[5]['name'] . '",
+        "' . e($artistsat[5]['name']) . '",
         "' . $artistsat[5]['img'] . '",
         "' . $artistsat[5]['id'] . '",
 
-        "' . $artistsat[6]['name'] . '",
+        "' . e($artistsat[6]['name']) . '",
         "' . $artistsat[6]['img'] . '",
         "' . $artistsat[6]['id'] . '",
 
-        "' . $artistsat[7]['name'] . '",
+        "' . e($artistsat[7]['name']) . '",
         "' . $artistsat[7]['img'] . '",
         "' . $artistsat[7]['id'] . '",
 
-        "' . $artistsat[8]['name'] . '",
+        "' . e($artistsat[8]['name']) . '",
         "' . $artistsat[8]['img'] . '",
         "' . $artistsat[8]['id'] . '",
 
-        "' . $artistsat[9]['name'] . '",
+        "' . e($artistsat[9]['name']) . '",
         "' . $artistsat[9]['img'] . '",
         "' . $artistsat[9]['id'] . '",
 
