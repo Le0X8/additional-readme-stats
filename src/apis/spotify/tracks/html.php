@@ -22,7 +22,7 @@
             };
 
             for ($i = 0; $i < $limit; $i++) {
-                echo('<li><a href="https://open.spotify.com/track/' . $tracks[$i]['id'] . '">' . ($hide_rank ? '' : '<i>' . $i + 1 . '</i>') . '<img src="' . $tracks[$i]['img'] . '"><p>' . htmlspecialchars($tracks[$i]['name']) . '</p><span>' . htmlspecialchars($tracks[$i]['artist']) . '</span></a></li>');
+                echo('<li><a href="https://open.spotify.com/track/' . $tracks[$i]['id'] . '">' . ($hide_rank ? '' : '<i>' . $i + 1 . '</i>') . '<img src="' . $tracks[$i]['img'] . '"><div><p>' . htmlspecialchars($tracks[$i]['name']) . '</p><span>' . htmlspecialchars($tracks[$i]['artist']) . '</span></div></a></li>');
             };
             ?>
         </ul>
