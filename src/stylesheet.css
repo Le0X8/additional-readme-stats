@@ -8,10 +8,14 @@ html, body {
 
 h1 {
     text-align: center;
+    margin-bottom: 0;
+    padding: 0 1rem;
 }
 
 ul {
     padding: 1rem;
+    max-width: fit-content;
+    margin: 0 auto;
 }
 
 li {
@@ -73,6 +77,8 @@ span {
 }
 
 b {
+    display: block;
+    padding: 0 1rem;
     font-weight: normal;
     color: #777;
 }
