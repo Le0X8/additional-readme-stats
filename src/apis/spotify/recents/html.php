@@ -89,7 +89,7 @@
                         break;
                 };
 
-                echo('<li><a href="https://open.spotify.com/track/' . $id . '"><img src="' . $img . '"><p>' . htmlspecialchars($name) . '</p><span>' . htmlspecialchars($artist) . '</span></a></li>');
+                echo('<li><a href="https://open.spotify.com/track/' . $id . '"><img src="' . $img . '"><div><p>' . htmlspecialchars($name) . '</p><span>' . htmlspecialchars($artist) . '</span></div></a></li>');
             }; 
             ?>
         </ul>
