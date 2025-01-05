@@ -1,5 +1,5 @@
 <?php
-// Info: doc/self-hosting.md#keys
+// Info: docs/self-hosting.md#keys
 
 $ROOT_URL = ''; // The root url of your instance, e.g. https://armstats.leox.dev or http://localhost:8000 (no trailing slash)
 
