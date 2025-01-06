@@ -18,7 +18,7 @@ You need to specify your own keys. Provide them using the Cloudflare dashboard. 
 
 1. Specify a custom init key in your environment variables.
 2. Go to your browser and navigate to `https://<your domain>/init?initKey=<your init key>`.
-3. Set the init key to an empty string to disable the init route.
+3. Set the init key to `disabled` to disable the init route.
 
 #### Spotify
 

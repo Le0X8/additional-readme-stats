@@ -2,27 +2,9 @@ import { DB_INITIALIZATION_KEY } from '$env/static/private';
 import { query } from '@neokit-dev/relational';
 import { json } from '@sveltejs/kit';
 
-/*
-mysqli_query($db, 'CREATE TABLE IF NOT EXISTS spotifycurrent (
-    username VARCHAR(255) PRIMARY KEY,
-    device VARCHAR(255),
-    device_type VARCHAR(255),
-    volume INT UNSIGNED,
-    shuffle BOOLEAN,
-    rpt VARCHAR(255),
-    playing BOOLEAN,
-    playtype VARCHAR(31),
-    track VARCHAR(255),
-    artist VARCHAR(255),
-    img VARCHAR(255),
-    id VARCHAR(63),
-    expiration_time INT UNSIGNED
-)');
-*/
-
 export async function GET({ url }) {
 	const key = url.searchParams.get('initKey');
-	if (key === '' || key !== DB_INITIALIZATION_KEY)
+	if (key === 'disabled' || key !== DB_INITIALIZATION_KEY)
 		return json({ error: 'Forbidden', success: false }, { status: 403 });
 
 	const database: Record<string, Record<string, string>> = {
