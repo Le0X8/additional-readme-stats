@@ -8,13 +8,13 @@ This project is compatible with and inspired by [Anurag Hazra](https://github.co
 
 ## Platforms
 
-- [Spotify](doc/spotify.md)
+- [Spotify](docs/spotify.md)
 
 ## Usage
 
 Check out the platforms above to see how to use them.
 
-If you don't want to self-host your own instance, you can use this one as your base URL: ```https://armstats.leox.dev```
+If you don't want to self-host your own instance, you can use this one as your base URL: `https://armstats.leox.dev`
 
 ## Auto redirect
 
@@ -22,7 +22,7 @@ Some services (e. g. Spotify) want you to add a link to their service in your RE
 
 You just have to modify the url like this:
 
-```<endpoint URL>/html?<params>```
+`<endpoint URL>/html?<params>`
 
 This allows you to link multiple URLs at once.
 
@@ -32,7 +32,7 @@ This project supports [Shields.io](https://shields.io) Dynamic JSON Badges.
 
 Visit the [Shields.io badge generator](https://shields.io/badges/dynamic-json-badge) and use the following URL as the URL input:
 
-```<endpoint URL>/json?<params>```
+`<endpoint URL>/json?<params>`
 
 For example, you can create badges like this:
 
@@ -44,7 +44,7 @@ For example, you can create badges like this:
 
 All endpoints only support CORS for the following domains:
 
-- `*.github.io` (GitHub Pages domains)
+- ~~`*.github.io` (GitHub Pages domains)~~ `// TODO`
 
 If you want to use this project on other websites, you have to fetch the data on your own server and then send it to the client.
 It's recommended to cache the data for a few minutes.
@@ -55,4 +55,4 @@ You should use the same URL structure as [dynamic JSON badges](#dynamic-json-bad
 
 ## Self hosting
 
-If you want to host this project yourself, please read [the self hosting guide](doc/self-hosting.md).
+If you want to host this project yourself, please read [the self hosting guide](docs/self-hosting.md).
