@@ -192,7 +192,7 @@ export async function GET({ url }) {
     <text x="25" y="50" class="header" data-testid="header">Login required</text>
     <text x="25" y="75" class="text" data-testid="text">You need to log in to use this image. See the docs for more info.</text>
 </svg>`,
-			{ status: 401, headers: { 'Content-Type': 'image/svg+xml' } }
+			{ status: 401, headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'no-cache' } }
 		);
 	}
 }
