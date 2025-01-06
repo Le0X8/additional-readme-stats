@@ -1,8 +1,9 @@
 export async function dataUrl(url: string) {
-	const blob = await (await fetch(url)).blob();
-	return `data:${blob.type};base64,${arrayBufferToBase64(await blob.arrayBuffer())}`;
+	return url;
+	/*const blob = await (await fetch(url)).blob();
+	return `data:${blob.type};base64,${arrayBufferToBase64(await blob.arrayBuffer())}`;*/
 }
-
+/*
 function arrayBufferToBase64(buffer: ArrayBuffer) {
 	let binary = '';
 	const bytes = new Uint8Array(buffer);
@@ -11,3 +12,4 @@ function arrayBufferToBase64(buffer: ArrayBuffer) {
 	}
 	return btoa(binary);
 }
+*/
