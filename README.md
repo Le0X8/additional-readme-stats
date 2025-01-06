@@ -36,7 +36,7 @@ Visit the [Shields.io badge generator](https://shields.io/badges/dynamic-json-ba
 
 For example, you can create badges like this:
 
-![Spotify currently listening to](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Farmstats.leox.dev%2Fspotify%2Fcurrent%2Fjson%3Fusername%3Dji431f2ja6vyczqq0eatna6jb&query=%24.name&style=for-the-badge&logo=spotify&logoColor=%23ffffff&label=Currently%20listening%20to&labelColor=191414&color=1db954)
+![Spotify currently listening to](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Farmstats.leox.dev%2Fspotify%2Fcurrent%2Fjson%3Fusername%3Dji431f2ja6vyczqq0eatna6jb&query=%24.track&style=for-the-badge&logo=spotify&logoColor=%23ffffff&label=Currently%20listening%20to&labelColor=191414&color=1db954)
 
 **Note:** Use the official service APIs for other purposes than README badges and your [personal website](#usage-on-your-personal-website).
 
