@@ -6,11 +6,11 @@ All of these endpoints can be used as direct links to Spotify by just adding `/h
 
 ## Common parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `logo` | The Spotify logo type ([`icon` or `logo`](#whats-the-difference-between-the-icon-and-logo-logo-types)) | `icon` | No |
-| `logo_color` | The Spotify logo color (`black`, `white`, or `green`) [[TOS](#spotify-terms-of-service)] | `black` | No |
-| `logo_position` | The Spotify logo position (`top_right` or `bottom_right`)  | `top_right` | No |
+| Parameter       | Description                                                                                            | Default value | Required |
+| --------------- | ------------------------------------------------------------------------------------------------------ | ------------- | -------- |
+| `logo`          | The Spotify logo type ([`icon` or `logo`](#whats-the-difference-between-the-icon-and-logo-logo-types)) | `icon`        | No       |
+| `logo_color`    | The Spotify logo color (`black`, `white`, or `green`) [[TOS](#spotify-terms-of-service)]               | `black`       | No       |
+| `logo_position` | The Spotify logo position (`top_right` or `bottom_right`)                                              | `top_right`   | No       |
 
 These can be used in all of the stats below.
 
@@ -24,18 +24,18 @@ Caching: 24 hours
 
 #### Example
 
-```https://armstats.leox.dev/spotify/tracks?username=ji431f2ja6vyczqq0eatna6jb```
+`https://armstats.leox.dev/spotify/tracks?username=ji431f2ja6vyczqq0eatna6jb`
 
 ![My top tracks](https://armstats.leox.dev/spotify/tracks?username=ji431f2ja6vyczqq0eatna6jb)
 
 #### Parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `username` | Your Spotify username | empty string | Yes |
-| `limit` | The amount of tracks to show (between 1 and 10) | `5` | No |
-| `period` | The period of the tracks (`month`, `halfyear`, `alltime`) | `alltime` | No |
-| `hide_rank` | Hide the rank number | `false` | No |
+| Parameter   | Description                                               | Default value | Required |
+| ----------- | --------------------------------------------------------- | ------------- | -------- |
+| `username`  | Your Spotify username                                     | empty string  | Yes      |
+| `limit`     | The amount of tracks to show (between 1 and 10)           | `5`           | No       |
+| `period`    | The period of the tracks (`month`, `halfyear`, `alltime`) | `alltime`     | No       |
+| `hide_rank` | Hide the rank number                                      | `false`       | No       |
 
 ### Top artists
 
@@ -45,18 +45,18 @@ Caching: 24 hours
 
 #### Example
 
-```https://armstats.leox.dev/spotify/artists?username=ji431f2ja6vyczqq0eatna6jb```
+`https://armstats.leox.dev/spotify/artists?username=ji431f2ja6vyczqq0eatna6jb`
 
 ![My top artists](https://armstats.leox.dev/spotify/artists?username=ji431f2ja6vyczqq0eatna6jb)
 
 #### Parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `username` | Your Spotify username | empty string | Yes |
-| `limit` | The amount of artists to show (between 1 and 10) | `5` | No |
-| `period` | The period of the artists (`month`, `halfyear`, `alltime`) | `alltime` | No |
-| `hide_rank` | Hide the rank number | `false` | No |
+| Parameter   | Description                                                | Default value | Required |
+| ----------- | ---------------------------------------------------------- | ------------- | -------- |
+| `username`  | Your Spotify username                                      | empty string  | Yes      |
+| `limit`     | The amount of artists to show (between 1 and 10)           | `5`           | No       |
+| `period`    | The period of the artists (`month`, `halfyear`, `alltime`) | `alltime`     | No       |
+| `hide_rank` | Hide the rank number                                       | `false`       | No       |
 
 ### Currently playing track
 
@@ -66,16 +66,16 @@ Caching: 2 minutes
 
 #### Example
 
-```https://armstats.leox.dev/spotify/current?username=ji431f2ja6vyczqq0eatna6jb```
+`https://armstats.leox.dev/spotify/current?username=ji431f2ja6vyczqq0eatna6jb`
 
 ![My current Spotify track](https://armstats.leox.dev/spotify/current?username=ji431f2ja6vyczqq0eatna6jb)
 
 #### Parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `username` | Your Spotify username | empty string | Yes |
-| `show` | What to show, valid: `volume`, `device` | empty string | No |
+| Parameter  | Description                             | Default value | Required |
+| ---------- | --------------------------------------- | ------------- | -------- |
+| `username` | Your Spotify username                   | empty string  | Yes      |
+| `show`     | What to show, valid: `volume`, `device` | empty string  | No       |
 
 ### Recently played tracks
 
@@ -85,43 +85,40 @@ Caching: 5 minutes
 
 #### Example
 
-```https://armstats.leox.dev/spotify/recents?username=ji431f2ja6vyczqq0eatna6jb```
+`https://armstats.leox.dev/spotify/recents?username=ji431f2ja6vyczqq0eatna6jb`
 
 ![My recently played tracks](https://armstats.leox.dev/spotify/recents?username=ji431f2ja6vyczqq0eatna6jb)
 
 #### Parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `username` | Your Spotify username | empty string | Yes |
-| `limit` | The amount of tracks to show (between 1 and 10) | `5` | No |
+| Parameter  | Description                                     | Default value | Required |
+| ---------- | ----------------------------------------------- | ------------- | -------- |
+| `username` | Your Spotify username                           | empty string  | Yes      |
+| `limit`    | The amount of tracks to show (between 1 and 10) | `5`           | No       |
 
 ## Authentication
 
-To authenticate with Spotify, you need to create a Spotify application [here](https://developer.spotify.com/dashboard/create) and setting the redirect URI to `<protocol>://<your domain>/spotify/callback/<your client_id>/<your client_secret>`. If the instance you are using is providing a custom API key, you can leave the Client ID and Client Secret fields empty. This can be checked by visiting the `/configuration` endpoint.
+To authenticate with Spotify, you need to create a Spotify application [here](https://developer.spotify.com/dashboard/create) and setting the redirect URI to `https://<your domain>/spotify/callback`. If the instance you are using is providing a custom API key, you can leave the Client ID and Client Secret fields empty.
 
 ### Parameters
 
-| Parameter | Description | Default value | Required |
-| --- | --- | --- | --- |
-| `client_id` | Your Spotify application client ID | empty string | Yes/No |
-| `client_secret` | Your Spotify application client secret | empty string | Yes/No |
-| `username` | Your Spotify username | empty string | Yes |
+| Parameter       | Description                            | Default value | Required |
+| --------------- | -------------------------------------- | ------------- | -------- |
+| `client_id`     | Your Spotify application client ID     | empty string  | Yes/No   |
+| `client_secret` | Your Spotify application client secret | empty string  | Yes/No   |
 
 ### Login
 
-Endpoint: `/spotify/auth`
+Endpoint: `/spotify/auth?id=<client_id>&secret=<client_secret>`
 
-You just have to visit this URL once, remeber to add `client_id` and `client_secret` if required.
+You just have to visit this URL once, remeber to add `client_id` and `client_secret` if required. If not, you can just visit `/spotify/auth`.
 
 **Note:**
 You need to be logged in to your Spotify account in your browser for this to work.
 
 ## What's the difference between the `icon` and `logo` logo types?
 
-| `icon` | ![Spotify icon](../assets/spotify/icons/green.png) |
-| --- | --- |
-| `logo` | ![Spotify logo](../assets/spotify/logos/green.png) |
+The `icon` is the Spotify icon, while the `logo` is the Spotify logo with the text.
 
 ## Spotify Terms of Service
 

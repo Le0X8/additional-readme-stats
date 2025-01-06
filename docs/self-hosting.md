@@ -4,62 +4,28 @@ If you want to self host this project, please read the following instructions.
 
 ## Requirements
 
-You will get the best experience if you use a Linux server.
-
-- Apache or Nginx
-- PHP 8.1+
-- Composer
-- MariaDB or MySQL (MariaDB is recommended)
-- PHP mysqli extension
-- PHP curl extension
-
-For all the requirements, you can find a lot of installation guides on the internet.
-
-### Additional configuration
-
-#### Apache
-
-Configure your Apache server to rewrite all requests to allow `.htaccess` files.
-
-#### Nginx
-
-Open your configuration file and change the following line:
-
-```nginx
-location / {
-    try_files $uri $uri/ =404;
-}
-```
-
-to
-
-```nginx
-location / {
-    try_files $uri $uri/ /index.php;
-}
-```
+- a Cloudflare account
 
 ## Installation
 
-Download the source code of the [latest release](https://github.com/Le0X8/additional-readme-stats/releases/latest) into your server root and run `composer install` to install all dependencies.
+Fork this repository and add it as a Cloudflare Pages website with SvelteKit presets. You'll need to edit `wrangler.toml` to include your own Cloudflare D1 database id.
 
 ### Keys
 
-You need to specify your own keys.
+You need to specify your own keys. Provide them using the Cloudflare dashboard. You can find all required keys in [`default.env`](../default.env).
 
-Just rename `keys-default.php` to `keys.php` and fill in your keys.
+#### Database setup
 
-#### Database connection
-
-1. Create a new database just for this project
-2. Fill in the database credentials in `keys.php`
+1. Specify a custom init key in your environment variables.
+2. Go to your browser and navigate to `https://<your domain>/init?key=<your init key>`.
+3. Set the init key to an empty string to disable the init route.
 
 #### Spotify
 
 1. Create a new Spotify application [here](https://developer.spotify.com/dashboard/create);
-2. Set redirect URI to `<protocol>://<your domain>/spotify/callback/<your client_id>/<your client_secret>`;
+2. Set redirect URI to `https://<your domain>/spotify/callback`;
 3. After creating the application, go to settings and copy the client ID and client secret.
-4. Fill in the keys in `keys.php`.
+4. Fill in the keys in your environment variables.
 
 **Note:**
 If you are in development mode, you have to add yourself and everyone who can use the same credentials as you in the `User Management` tab in your application dashboard.

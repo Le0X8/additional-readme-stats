@@ -5,7 +5,11 @@ import { error } from '@sveltejs/kit';
 
 export async function load({ url }) {
 	const code = url.searchParams.get('code');
-	if (!code) return error(401, 'Missing callback code\n<a href="/spotify#login">Try again</a>');
+	if (!code)
+		return error(
+			401,
+			'Missing callback code\n<a href="/spotify#login">See the docs for more info</a>'
+		);
 
 	const token = await codeToken(code);
 	const api = createApi(token);
@@ -37,12 +41,15 @@ export async function load({ url }) {
 
 		return { ...user };
 	} catch {
-		const state = url.searchParams.get('state')?.split('/') as string[] ?? ['', ''];
+		const state = (url.searchParams.get('state')?.split('/') as string[]) ?? ['', ''];
 		const clientId = state[0]?.length > 0 ? state[0] : '';
 		const clientSecret = state[1]?.length > 0 ? state[1] : '';
-		return error(403, `Invalid callback code\n<a href="/spotify/auth?${(new URLSearchParams({
-			id: clientId,
-			secret: clientSecret
-		})).toString()}">Try again</a>`);
+		return error(
+			403,
+			`Invalid callback code\n<a href="/spotify/auth?${new URLSearchParams({
+				id: clientId,
+				secret: clientSecret
+			}).toString()}">Try again</a>`
+		);
 	}
 }
