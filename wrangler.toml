@@ -1,0 +1,11 @@
+#:schema node_modules/wrangler/config-schema.json
+name = 'armstats'
+pages_build_output_dir = '.svelte-kit/cloudflare'
+
+compatibility_date = '2024-05-31'
+compatibility_flags = []
+
+[[d1_databases]]
+binding = 'armstatsDatabase'
+database_name = 'armstats'
+database_id = 'e243ffd4-0d8e-41ff-a069-bebbc21cf8b6'
