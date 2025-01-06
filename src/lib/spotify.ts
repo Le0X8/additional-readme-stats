@@ -330,8 +330,7 @@ export async function getCurrent(
 	return (
 		current ??
 		(force
-			? null
-			: {
+			? {
 					device: 'offline',
 					deviceType: 'speaker',
 					volume: 0,
@@ -343,7 +342,7 @@ export async function getCurrent(
 					artist: 'No one',
 					img: 'https://i.scdn.co/image/ab67616d0000b273d49d976721f4dc6b3c6225ad',
 					id: '1sgyYCbGhkX3auLHCQ825G'
-				})
+				}: null)
 	);
 }
 

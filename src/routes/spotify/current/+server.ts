@@ -23,9 +23,8 @@ export async function GET({ url }) {
 		if (!username) return error(400, 'No username provided');
 
 		const current = await getCurrent(username);
-		if (!current) return error(400, 'Not playing anything');
 
-		current.img = await dataUrl(current.img);
+		if (current) current.img = await dataUrl(current.img);
 
 		let logotype = 'icon';
 		if (url.searchParams.get('logo') == 'logo') logotype = 'logo';
@@ -41,6 +40,45 @@ export async function GET({ url }) {
 
 		const theme = getTheme(url);
 		const title = theme.custom_title ?? 'My current Spotify track';
+
+        if (!current) return text(
+			`<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+    <title>${title}</title>
+    <desc></desc>
+    <style>
+        .header {
+            font: 600 15.5px 'Segoe UI', Ubuntu, sans-serif;
+            fill: #${theme.title_color};
+        }
+
+        .name {
+            font: 400 20px 'Segoe UI', Ubuntu, sans-serif;
+            font-weight: 400;
+            font-family: 'Segoe UI', Ubuntu, sans-serif;
+            fill: #${theme.text_color};
+        }
+
+        .icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 21px;
+        }
+    </style>
+
+    <rect x="0.5" y="0.5" width="348" height="348" fill="#${theme.bg_color}" stroke="#${theme.border_color}" rx="${theme.border_radius}" stroke-width="1" stroke-opacity="1"></rect>
+    <text x="25" y="35" class="header">${title}</text>
+
+    <text class="name" x="50%" y="175" dominant-baseline="middle" text-anchor="middle">Currently not</text>
+    <text class="name" x="50%" y="200" dominant-baseline="middle" text-anchor="middle">listening music on Spotify.</text>
+
+    ${logotype === 'icon' ? `<image href="${logo}" x="310" y="${logoposy}" class="icon"></image>` : `<image href="${logo}" x="260" y="${logoposy}" class="logo"></image>`}
+</svg>`,
+			{ headers: { 'Content-Type': 'image/svg+xml' } }
+		);
 
 		return text(
 			`<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
