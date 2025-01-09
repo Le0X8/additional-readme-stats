@@ -142,7 +142,7 @@ export async function GET({ url }) {
     
     ${logotype === 'icon' ? `<image href="${logo}" x="310" y="${logoposy}" class="icon"></image>` : `<image href="${logo}" x="260" y="${logoposy}" class="logo"></image>`}
 </svg>`,
-			{ headers: { 'Content-Type': 'image/svg+xml' } }
+			{ headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'no-cache' } }
 		);
 	} catch {
 		return text(
