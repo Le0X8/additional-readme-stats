@@ -94,8 +94,6 @@ export async function getTop(
 	const api = createApi(token);
 
 	const top = (await api.currentUser.topItems(type, time, 10, 0)).items;
-	if (type === 'tracks') top.forEach((track) => (track as Track).album.images.reverse());
-	else top.forEach((artist) => (artist as Artist).images.reverse());
 	await cacheTop(type, time, username, top);
 
 	if (type === 'tracks')
@@ -243,7 +241,6 @@ export async function getRecents(
 	const api = createApi(token);
 
 	const recents = (await api.player.getRecentlyPlayedTracks(10)).items;
-	recents.forEach((track) => track.track.album.images.reverse());
 	await cacheRecents(username, recents);
 
 	return recents.slice(0, limit).map((recent) => ({
@@ -340,8 +337,8 @@ export async function getCurrent(
 					type: 'track',
 					track: 'Nothing',
 					artist: 'No one',
-					img: 'https://i.scdn.co/image/ab67616d0000b273d49d976721f4dc6b3c6225ad',
-					id: '1sgyYCbGhkX3auLHCQ825G'
+					img: 'https://i.scdn.co/image/ab67616d00001e0287b1ed12660fd880d2d3729d',
+					id: '4HyefsBihebUexaNmDHYa3'
 				}: null)
 	);
 }
